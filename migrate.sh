@@ -47,6 +47,6 @@ fi
 
 echo "Cleaning up Workspace"
 cd ..
-rm -rf $BB_REPO
+#rm -rf $BB_REPO
 
 echo "Migration Completed Successfully!"

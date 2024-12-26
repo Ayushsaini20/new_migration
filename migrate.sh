@@ -39,6 +39,16 @@ if [ $? -ne 0 ]; then
     echo "Failed to add GitHub remote. Exiting."
     exit 1
 fi
+
+echo "Marking the BitBucket Repository as Archived (Read-Only)..."
+curl -X PUT "https://api.bitbucket.org/2.0/repositories/$BB_WORKSPACE/$BB_REPO" \
+-H "Authorization: Bearer $BB_TOKEN" \
+-H "Content-Type: application/json" \
+-d "{
+  \"is_private\": true,
+  \"archived\": true
+}"
+
  
 # Step 3: Push all branches and tags to GitHub
 echo "Pushing to GitHub..."

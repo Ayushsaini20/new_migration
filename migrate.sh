@@ -31,7 +31,7 @@ echo "Adding GitHub remote..."
 git config user.name $GH_USERNAME
 git config user.email $GH_EMAIL
 git remote add github "https://x-access-token:$GHE_TOKEN@github.com/$GH_USERNAME/$GH_REPO"
-
+git remote -v
 if [ $? -ne 0 ]; then
     echo "Failed to add GitHub remote. Exiting."
     exit 1

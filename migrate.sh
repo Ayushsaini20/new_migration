@@ -14,8 +14,8 @@ GH_USERNAME=Ayushsaini20
 GH_EMAIL=ayushsaini963@gmail.com
 
 # Echo the credentials (for debugging, not recommended in production)
-echo "BitBucket Token: $BB_TOKEN (hidden)"
-echo "GitHub Token: $GHE_TOKEN (hidden)"
+echo "BitBucket Token: $BB_TOKEN"
+echo "GitHub Token: $GHE_TOKEN"
 echo "Git Clone URL: https://x-token-auth:$BB_TOKEN@bitbucket.org/$BB_WORKSPACE/$BB_REPO.git"
 
 echo "Cloning BitBucket Repository into GitHub Runner Context"

@@ -5,6 +5,7 @@
 # BitBucket Project -> GitHub Organization
 # BitBucket Repository -> GitHub Repository
 
+
 BB_WORKSPACE=bb_to_gh
 BB_PROJECT=test
 BB_REPO=test_repo1
@@ -12,9 +13,10 @@ GH_REPO=bbtest1
 GH_USERNAME=Ayushsaini20
 GH_EMAIL=ayushsaini963@gmail.com
 
-# Echo the credentials (only for debugging, not recommended in production)
-echo "BitBucket Token: $BB_TOKEN"
-echo "GitHub Token: $GHE_TOKEN"
+# Echo the credentials (for debugging, not recommended in production)
+echo "BitBucket Token: $BB_TOKEN (hidden)"
+echo "GitHub Token: $GHE_TOKEN (hidden)"
+echo "Git Clone URL: https://x-token-auth:$BB_TOKEN@bitbucket.org/$BB_WORKSPACE/$BB_REPO.git"
 
 echo "Cloning BitBucket Repository into GitHub Runner Context"
 git clone https://x-token-auth:$BB_TOKEN@bitbucket.org/$BB_WORKSPACE/$BB_REPO.git
@@ -22,7 +24,9 @@ if [ $? -ne 0 ]; then
     echo "Failed to clone BitBucket repository. Check credentials and repository details."
     exit 1
 fi
+
 cd $BB_REPO
+
 
 echo "Creating GitHub Repository with GH APIs"
 curl -X POST https://api.github.com/user/repos \

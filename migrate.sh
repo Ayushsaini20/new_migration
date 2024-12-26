@@ -49,6 +49,17 @@ curl -X PUT "https://api.bitbucket.org/2.0/repositories/$BB_WORKSPACE/$BB_REPO" 
   \"archived\": true
 }"
 
+# Check if the repository is archived
+response=$(curl -X GET "https://api.bitbucket.org/2.0/repositories/$BB_WORKSPACE/$BB_REPO" \
+-H "Authorization: Bearer $BB_TOKEN")
+
+# Check for "archived": true in the response
+if [[ "$response" == *"\"archived\": true"* ]]; then
+  echo "Repository successfully archived."
+else
+  echo "Failed to archive the repository."
+fi
+
  
 # Step 3: Push all branches and tags to GitHub
 echo "Pushing to GitHub..."

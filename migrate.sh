@@ -5,12 +5,12 @@
 # BitBucket Project -> GitHub Organization
 # BitBucket Repository -> GitHub Repository
 
-BB_WORKSPACE: bb_to_gh
-BB_PROJECT: test
-BB_REPO: test_repo1
-GH_REPO: bbtest
-GH_USERNAME: Ayushsaini20
-GH_EMAIL: ayushsaini963@gmail.com
+BB_WORKSPACE=bb_to_gh
+BB_PROJECT=test
+BB_REPO=test_repo1
+GH_REPO=bbtest
+GH_USERNAME=Ayushsaini20
+GH_EMAIL=ayushsaini963@gmail.com
 
 echo "Cloning BitBucket Repository into GitHub Runner Context"
 git clone https://x-token-auth:$BB_TOKEN@bitbucket.org/$BB_WORKSPACE/$BB_REPO.git

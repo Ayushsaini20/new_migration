@@ -1,10 +1,6 @@
 #!/bin/bash
 
 # Mapper
-# BitBucket Workspace -> GitHub Enterprise
-# BitBucket Project -> GitHub Organization
-# BitBucket Repository -> GitHub Repository
-
 BB_WORKSPACE=bb_to_gh
 BB_PROJECT=test
 BB_REPO=test_repo1
@@ -14,10 +10,13 @@ GH_EMAIL=ayushsaini963@gmail.com
 
 echo "Cloning BitBucket Repository into GitHub Runner Context"
 git clone https://x-token-auth:$BB_TOKEN@bitbucket.org/$BB_WORKSPACE/$BB_REPO.git
+if [ $? -ne 0 ]; then
+    echo "Failed to clone Bitbucket repository. Exiting."
+    exit 1
+fi
 cd $BB_REPO
 
 echo "Creating GitHub Repository with GH APIs"
-
 curl -X POST https://api.github.com/user/repos \
 -H "Authorization: Bearer $GHE_TOKEN" \
 -H "Accept: application/vnd.github+json" \
@@ -27,12 +26,17 @@ curl -X POST https://api.github.com/user/repos \
   \"private\": true
 }"
 
+if [ $? -ne 0 ]; then
+    echo "Failed to create GitHub repository. Exiting."
+    exit 1
+fi
+
 echo "Adding GitHub remote..."
 git config user.name $GH_USERNAME
 git config user.email $GH_EMAIL
 git remote remove origin
-git remote add github "https://x-access-token:$GHE_TOKEN@github.com/$GH_USERNAME/$GH_REPO"
-git remote -v
+git remote add github "https://x-access-token:$GHE_TOKEN@github.com/$GH_USERNAME/$GH_REPO.git"
+
 if [ $? -ne 0 ]; then
     echo "Failed to add GitHub remote. Exiting."
     exit 1
@@ -40,7 +44,6 @@ fi
 
 echo "Pushing to GitHub..."
 git push --mirror github
-
 if [ $? -ne 0 ]; then
     echo "Failed to push to GitHub. Exiting."
     exit 1
@@ -48,6 +51,6 @@ fi
 
 echo "Cleaning up Workspace"
 cd ..
-#rm -rf $BB_REPO
+rm -rf $BB_REPO
 
 echo "Migration Completed Successfully!"

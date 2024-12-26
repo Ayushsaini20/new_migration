@@ -9,13 +9,13 @@ BB_WORKSPACE=noicecurse
 BB_PROJECT=org
 BB_REPO=repo
 #GITHUB_REMOTE_URL=https://x-access-token:$GHE_TOKEN@github.com/nishkarshraj/23-Dec-8
-GITHUB_REMOTE_URL=https://X-ACCESS-TOKEN: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@github.com/Ayushsaini20/newtest_repo.git
+GITHUB_REMOTE_URL=https://X-ACCESS-TOKEN:$GHE_TOKEN@github.com/Ayushsaini20/newtest_repo.git
 GH_REPO="newtest_repo"
 GH_USERNAME=Ayushsaini20
 GH_EMAIL=ayushsaini963@gmail.com
  
 echo "Cloning BitBucket Repository into GitHub Runner Context"
-git clone https://x-token-auth:ATCTT3xFfGN0Ve3CQ6yEbGWRfiZ_Gq2bha6lTPQfAKlseqtlRYOSvTMArZTx5wUvab8uBly5ER_KolfsdyCYnJO7JYHORPgIIm8jQgIsmkM4oNWsXbFnvCJUj325QvQUFRok3AK1H4ptGl_6jVXXxhL0feKr7bb2lCQVd5XmbQ9_Gqs7sr5qG7c=C7638B80@bitbucket.org/bb_to_gh/test_repo1.git
+git clone https://x-token-auth:$BB_TOKEN@bitbucket.org/bb_to_gh/test_repo1.git
 cd test_repo1
  
 echo "Creating GitHub Repository with GH APIs"

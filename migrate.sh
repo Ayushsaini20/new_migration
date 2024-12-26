@@ -8,7 +8,7 @@
 BB_WORKSPACE=bb_to_gh
 BB_PROJECT=test
 BB_REPO=test_repo1
-GH_REPO=bbtest
+GH_REPO=bbtest1
 GH_USERNAME=Ayushsaini20
 GH_EMAIL=ayushsaini963@gmail.com
 
